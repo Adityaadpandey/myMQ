@@ -10,7 +10,9 @@
     "lint": "eslint --fix",
     "format": "prettier --write 'src/**/*.ts'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ioredis": "^5.6.1"
+  },
   "devDependencies": {
     "@types/node": "^22.13.11",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
