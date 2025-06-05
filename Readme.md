@@ -1,122 +1,118 @@
-Absolutely! Based on what you've built — a **Redis-backed message queue with optional TTL and real-time Pub/Sub support** in **TypeScript** — here's a complete and professional `README.md` template tailored to your project:
+    ## 📨 MyMQ - Lightweight Redis Message Queue
 
----
+    A simple, TypeScript-based message queue system powered by Redis. It supports:
 
-## 📨 MyMQ - Lightweight Redis Message Queue
+    * ✅ Queue operations (push, pop, get all)
+    * ✅ Optional TTL (auto-expiring queues)
+    * ✅ Real-time message delivery via Redis Pub/Sub
+    * ✅ JSON message structure with unique IDs and timestamps
 
-A simple, TypeScript-based message queue system powered by Redis. It supports:
+    ---
 
-* ✅ Queue operations (push, pop, get all)
-* ✅ Optional TTL (auto-expiring queues)
-* ✅ Real-time message delivery via Redis Pub/Sub
-* ✅ JSON message structure with unique IDs and timestamps
+    ## 📦 Features
 
----
+    * **Message persistence** using Redis Lists
+    * **Real-time delivery** with Redis Pub/Sub
+    * **Automatic expiration** via optional TTL
+    * **Type-safe** implementation using TypeScript
+    * Simple and minimalistic — no external frameworks
 
-## 📦 Features
+    ---
 
-* **Message persistence** using Redis Lists
-* **Real-time delivery** with Redis Pub/Sub
-* **Automatic expiration** via optional TTL
-* **Type-safe** implementation using TypeScript
-* Simple and minimalistic — no external frameworks
+    ## 🚀 Getting Started
 
----
+    ### 1. **Clone the repo**
 
-## 🚀 Getting Started
+    ```bash
+    git clone https://github.com/Adityaadpandey/myMQ.git
+    cd myMQ
+    ```
 
-### 1. **Clone the repo**
+    ### 2. **Install dependencies**
 
-```bash
-git clone https://github.com/Adityaadpandey/myMQ.git
-cd myMQ
-```
+    ```bash
+    npm install
+    ```
 
-### 2. **Install dependencies**
+    ### 3. **Start Redis**
 
-```bash
-npm install
-```
+    Make sure Redis is running locally:
 
-### 3. **Start Redis**
+    ```bash
+    docker run -d --name redisx -p 6379:6379 redis
+    ```
 
-Make sure Redis is running locally:
+    ### 4. **Run the project**
 
-```bash
-docker run -d --name redisx -p 6379:6379 redis
-```
+    Using `ts-node` (for development):
 
-### 4. **Run the project**
+    ```bash
+    npx ts-node src/index.ts
+    ```
 
-Using `ts-node` (for development):
+    Or compile:
 
-```bash
-npx ts-node src/index.ts
-```
+    ```bash
+    npm run build
+    node dist/index.js
+    ```
 
-Or compile:
+    ---
 
-```bash
-npm run build
-node dist/index.js
-```
+    ## 🛠 Project Structure
 
----
+    ```
+    src/
+    ├── MessageQueue.ts       # MessageQueue class (Redis + Pub/Sub)
+    ├── redisClient.ts        # Redis client setup
+    ├── consumer.ts           # Consumer for Pub/Sub messages
+    └── index.ts              # Example usage
+    ```
 
-## 🛠 Project Structure
+    ---
 
-```
-src/
-├── MessageQueue.ts       # MessageQueue class (Redis + Pub/Sub)
-├── redisClient.ts        # Redis client setup
-├── consumer.ts           # Consumer for Pub/Sub messages
-└── index.ts              # Example usage
-```
+    ## ✨ Example Usage
 
----
+    ```ts
+    import { MessageQueue } from "./MessageQueue.js";
 
-## ✨ Example Usage
+    const queue = new MessageQueue("queue:my-messages", 3600); // 1-hour TTL
 
-```ts
-import { MessageQueue } from "./MessageQueue.js";
+    await queue.addMessage({ text: "Hello, world!" });
 
-const queue = new MessageQueue("queue:my-messages", 3600); // 1-hour TTL
+    const messages = await queue.getMessages();
+    console.log(messages);
 
-await queue.addMessage({ text: "Hello, world!" });
+    queue.subscribe((msg) => {
+    console.log("🔔 New message received:", msg);
+    });
+    ```
 
-const messages = await queue.getMessages();
-console.log(messages);
+    ---
 
-queue.subscribe((msg) => {
-  console.log("🔔 New message received:", msg);
-});
-```
+    ## 🧪 Scripts
 
----
+    ```bash
+    npm run build     # Compiles TS to JS
+    npm run dev       # Runs with ts-node (if set up)
+    ```
 
-## 🧪 Scripts
+    ---
 
-```bash
-npm run build     # Compiles TS to JS
-npm run dev       # Runs with ts-node (if set up)
-```
+    ## 📌 Tech Stack
 
----
+    * **TypeScript**
+    * **Redis**
+    * **ioredis**
 
-## 📌 Tech Stack
+    ---
 
-* **TypeScript**
-* **Redis**
-* **ioredis**
+    ## 📄 License
 
----
+    MIT
 
-## 📄 License
+    ---
 
-MIT
+    ## 🙌 Contributing
 
----
-
-## 🙌 Contributing
-
-PRs are welcome! If you have ideas for retries, batch processing, or metrics, feel free to contribute.
+    PRs are welcome! If you have ideas for retries, batch processing, or metrics, feel free to contribute.
