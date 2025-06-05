@@ -1,5 +1,5 @@
 
-import { MessageQueue } from "./mq";
+import { MessageQueue } from "./MessageQueue";
 
 // Option 1: Wrap in an async function (recommended)
 async function main() {

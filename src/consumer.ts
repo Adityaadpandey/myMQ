@@ -1,9 +1,8 @@
 
-import { MessageQueue } from "./mq";
+import { MessageQueue } from "./MessageQueue";
 
-// Option 1: Wrap in an async function (recommended)
 async function main() {
-    const queue = new MessageQueue("queue:chat", 3600); // TTL of 1 hour
+    const queue = new MessageQueue("queue:chat", 3600);
 
     try {
         // Subscribe for real-time messages
@@ -15,5 +14,4 @@ async function main() {
     }
 }
 
-// Call the main function
 main();
